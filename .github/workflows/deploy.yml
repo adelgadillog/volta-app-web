@@ -28,26 +28,22 @@ jobs:
 
       - name: Deploy to gh-pages
         run: |
+          # Remove node_modules to avoid uploading large files
+          rm -rf node_modules
+
+          # Configure git
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
 
-          # Stash changes if any
-          git stash
+          # Create gh-pages branch and clean it
+          git checkout --orphan gh-pages-new
+          git rm -rf .
 
-          # Switch to gh-pages or create it
-          git fetch origin gh-pages 2>/dev/null || echo "gh-pages branch does not exist"
-          git checkout --orphan gh-pages 2>/dev/null || git checkout gh-pages
-
-          # Remove all files and copy build output
-          git rm -rf . 2>/dev/null || true
+          # Copy only the build output
           cp -r out/* .
-
-          # Create .nojekyll to tell GitHub Pages not to use Jekyll
           touch .nojekyll
 
-          # Add and commit
+          # Commit and push
           git add -A
-          git commit -m "Deploy to gh-pages" || echo "Nothing to commit"
-
-          # Push to gh-pages
-          git push origin gh-pages --force
+          git commit -m "Deploy to gh-pages [skip ci]" || echo "Nothing to commit"
+          git push origin gh-pages-new:gh-pages --force
