@@ -12,8 +12,12 @@ export const Icons = {
   ),
 
   Gamepad2: ({ className = 'w-6 h-6' }: IconProps) => (
+    // Levels/Escalera icon - for gamification
     <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-      <text x="6" y="9" className="text-2xl">🎮</text>
+      <path d="M3 18h4v3H3z" />
+      <path d="M9 12h4v9H9z" />
+      <path d="M15 6h4v15h-4z" />
+      <path d="M3 17H21" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   ),
 
@@ -39,9 +43,12 @@ export const Icons = {
   ),
 
   Smartphone2: ({ className = 'w-6 h-6' }: IconProps) => (
+    // Centralized apps icon
     <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-      <rect x="5" y="2" width="14" height="20" rx="2" />
-      <path d="M12 18h.01" />
+      <rect x="4" y="2" width="9" height="14" rx="1.5" />
+      <rect x="15" y="4" width="7" height="10" rx="1" opacity="0.5" />
+      <rect x="3" y="14" width="7" height="8" rx="1" opacity="0.5" />
+      <circle cx="12" cy="12" r="1" fill="currentColor" />
     </svg>
   ),
 
